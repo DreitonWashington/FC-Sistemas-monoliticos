@@ -19,14 +19,14 @@ describe("Add Client UseCase unit test", () => {
       name: "Client One",
       email: "client@gmail.com",
       document: "doc",
-      address: new Address({
+      address: {
         street: "street",
         number: "1",
         complement: "complement",
         city: "city",
         state: "state",
         zipCode: "000",
-      })
+      },
     }
 
     const result = await usecase.execute(input);

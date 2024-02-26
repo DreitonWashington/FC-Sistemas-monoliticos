@@ -41,6 +41,7 @@ describe("Product-Adm Facade test", () => {
       name: "Product One",
       description: "Product One Description",
       purchasePrice: 100,
+      salesPrice: 90,
       stock: 10,
     }
 
@@ -52,6 +53,7 @@ describe("Product-Adm Facade test", () => {
     expect(product.name).toBe(input.name);
     expect(product.description).toBe(input.description);
     expect(product.purchasePrice).toBe(input.purchasePrice);
+    expect(product.salesPrice).toBe(input.salesPrice);
   });
 
   it("Should check stock product quantity", async () => {
@@ -62,6 +64,7 @@ describe("Product-Adm Facade test", () => {
       name: "Product One",
       description: "Product One Description",
       purchasePrice: 100,
+      salesPrice: 90,
       stock: 10,
     }
 

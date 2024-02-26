@@ -54,12 +54,12 @@ describe("Invoice repository test", () => {
       id: "1",
       name: "Invoice One",
       document: "Invoice Document",
-      street: address._street,
-      number: address._number,
-      complement: address._complement,
+      street: address.street,
+      number: address.number,
+      complement: address.complement,
       city: address.city,
-      state: address._state,
-      zipCode: address._zipCode,
+      state: address.state,
+      zipCode: address.zipCode,
       items: [
         item,
         item2

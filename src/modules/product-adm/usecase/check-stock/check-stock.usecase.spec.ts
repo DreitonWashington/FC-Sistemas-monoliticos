@@ -7,6 +7,7 @@ const product = new Product({
   name: "Product One",
   description: "Product One Description",
   purchasePrice: 100,
+  salesPrice: 90,
   stock: 10,
 });
 

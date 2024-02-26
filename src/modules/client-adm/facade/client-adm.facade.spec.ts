@@ -4,7 +4,6 @@ import ClientRepository from "../repository/client.repository";
 import AddClientUseCase from "../usecase/add-client/add-client.usecase";
 import ClientAdmFacade from "./client-adm.facade";
 import ClientAdmFacadeFactory from "../factory/client-adm.facade.factory";
-import Address from "../../@shared/domain/value-object/address.value-object";
 
 describe("ClientAdmFacade test", () => {
 
@@ -40,14 +39,14 @@ describe("ClientAdmFacade test", () => {
       name: "Client One",
       email: "client@gmail.com",
       document: "doc",
-      address: new Address({
+      address: {
         street: "street",
         number: "1",
         complement: "complement",
         city: "city",
         state: "state",
         zipCode: "000",
-      })
+      },
     };
 
     await facade.add(input)

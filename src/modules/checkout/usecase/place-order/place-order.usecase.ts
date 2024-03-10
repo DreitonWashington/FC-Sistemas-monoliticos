@@ -1,3 +1,4 @@
+import Address from "../../../@shared/domain/value-object/address.value-object";
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
 import ClientAdmFacadeInterface from "../../../client-adm/facade/client-adm.facade.interface";
@@ -45,13 +46,21 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
       name: client.name,
       email: client.email,
       document: client.document,
-      address: client.address.street,
+      address: new Address({
+        street: client.address.street,
+        number: client.address.number,
+        complement: client.address.complement,
+        city: client.address.city,
+        state: client.address.state,
+        zipCode: client.address.zipCode,
+      }),
     });
 
     const order = new Order({
       client: myClient, 
       products: products,
     });
+
 
     const payment = await this._paymentFacade.process({
       orderId: order.id.id,

@@ -18,7 +18,7 @@ export default class Order extends BaseEntity {
   private _status: string;
 
   constructor(props: OrderProps) {
-    super(props.id);
+    super(props.id || new Id());
     this._client = props.client;
     this._products = props.products;
     this._status = props.status || "pending";

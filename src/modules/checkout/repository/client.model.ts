@@ -1,10 +1,10 @@
 import { Column, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
 
 @Table({
-  tableName: "invoices",
-  timestamps: false
+  tableName: "clients",
+  timestamps: false,
 })
-export default class InvoiceModel extends Model {
+export default class ClientModel extends Model {
 
   @PrimaryKey
   @Column({ allowNull: false })
@@ -12,31 +12,21 @@ export default class InvoiceModel extends Model {
   @Column({ allowNull: false })
   declare name: string;
   @Column({ allowNull: false })
+  declare email: string;
+  @Column({ allowNull: false })
   declare document: string;
-  
   @Column({ allowNull: false })
   declare street: string;
-
   @Column({ allowNull: false })
   declare number: string;
-
-  @Column({ allowNull: true })
+  @Column({ allowNull: false })
   declare complement: string;
-
   @Column({ allowNull: false })
   declare city: string;
-
   @Column({ allowNull: false })
   declare state: string;
-
   @Column({ allowNull: false })
   declare zipCode: string;
-
-  @HasMany(() => require("./invoice-items.model").default)
-  declare items: import("./invoice-items.model").default[];
-
-  @Column({ allowNull: false })
-  declare createdAt: Date;
-  @Column({ allowNull: false })
-  declare updatedAt: Date; 
+  @HasMany(() => require("./order.model").default)
+  declare orders: import("./order.model").default[];
 }

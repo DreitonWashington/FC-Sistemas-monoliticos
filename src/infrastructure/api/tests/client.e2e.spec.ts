@@ -2,29 +2,39 @@ import { Sequelize } from "sequelize-typescript";
 import { app } from "../express";
 import request from "supertest";
 import ClientModel from "../../../modules/client-adm/repository/client.model";
+import { Umzug } from "umzug";
+import { migrator } from "../../../modules/@shared/migrations/config-migration/migrator";
 
 describe("Teste e2e client", () => {
 
   let sequelize: Sequelize
+  let migration: Umzug<any>;
 
   beforeEach(async () => {
     sequelize = new Sequelize({
       dialect: 'sqlite',
       storage: ":memory:",
-      logging: false
+      logging: false,
+      sync: { force: true },
     })
     
     sequelize.addModels([ClientModel])
-    await sequelize.sync({force: true})
+    migration = migrator(sequelize)
+    await migration.up()
   })
 
   afterEach(async () => {
+    if (!migration || !sequelize) {
+      return 
+    }
+    migration = migrator(sequelize)
+    await migration.down()
     await sequelize.close()
   })
 
   it("Should create a client", async () => {
     await request(app)
-      .post("/client")
+      .post("/clients")
       .send({
         id: "1",
         name: "Lucas",
@@ -71,7 +81,7 @@ describe("Teste e2e client", () => {
     });
 
     const response = await request(app)
-      .get("/client/1")
+      .get("/clients/1")
       .send();
     
     expect(response.body.id).toBeDefined();

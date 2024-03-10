@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import { migrator } from "../config-migration/migrator";
-import { ProductModel } from "../../../product-adm/repository/product.model";
+import ProductModel from "../../../product-adm/repository/product.model";
 import ProductCatModel from "../../../store-catalog/repository/product.model";
 import { Umzug } from "umzug";
 
@@ -67,7 +67,6 @@ describe("Product-Migrations test", () => {
     });
 
     const product = await ProductCatModel.findOne({where: {id: "1"}});
-    console.log(product)
 
     expect(product.id).toBe("1");
     expect(product.name).toBe("Product Test umzug");
